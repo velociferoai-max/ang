@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Are You Ready to Represent Yourself?</title>
+  <style>
+    body {
+      font-family: system-ui, Arial, sans-serif;
+      background: #f7f9fc;
+      color: #222;
+      margin: 0;
+      padding: 20px;
+    }
+    .quiz-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #0369a1;
+      margin-bottom: 10px;
+    }
+    p.intro {
+      color: #475569;
+      font-size: 1.1em;
+    }
+    .question {
+      margin: 20px 0;
+    }
+    button {
+      background: #0369a1;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    button:hover { background: #075985; }
+    .result {
+      margin-top: 25px;
+      padding: 15px;
+      border-radius: 10px;
+      background: #e0f2fe;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>Are You Ready to Represent Yourself?</h1>
+    <p class="intro">Take this short quiz inspired by <em>Guide to Pro Se Civil Litigation</em> by Angela Gomez.</p>
+
+    <div class="question">
+      <p><strong>1. How comfortable are you reading and following court instructions?</strong></p>
+      <label><input type="radio" name="q1" value="2"> Very comfortable</label><br>
+      <label><input type="radio" name="q1" value="1"> Somewhat comfortable</label><br>
+      <label><input type="radio" name="q1" value="0"> Not comfortable at all</label>
+    </div>
+
+    <div class="question">
+      <p><strong>2. When faced with deadlines, I usually…</strong></p>
+      <label><input type="radio" name="q2" value="2"> Track them carefully with a calendar</label><br>
+      <label><input type="radio" name="q2" value="1"> Try to remember most of them</label><br>
+      <label><input type="radio" name="q2" value="0"> Often lose track</label>
+    </div>
+
+    <div class="question">
+      <p><strong>3. How would you describe your writing skills?</strong></p>
+      <label><input type="radio" name="q3" value="2"> Clear and organized</label><br>
+      <label><input type="radio" name="q3" value="1"> Average</label><br>
+      <label><input type="radio" name="q3" value="0"> I struggle to explain my thoughts</label>
+    </div>
+
+    <button onclick="checkResults()">See My Result</button>
+
+    <div class="result" id="resultBox"></div>
+
+    <p style="margin-top:20px; text-align:center;">
+      <a href="index.html">← Back to Angela's main page</a>
+    </p>
+  </div>
+
+  <script>
+    function checkResults() {
+      let score = 0;
+      for (let i = 1; i <= 3; i++) {
+        const answer = document.querySelector(`input[name='q${i}']:checked`);
+        if (answer) score += parseInt(answer.value);
+      }
+      const resultBox = document.getElementById('resultBox');
+      let message = '';
+      if (score >= 5) {
+        message = '<strong>You’re well-prepared!</strong> You already have the discipline and focus to represent yourself confidently.';
+      } else if (score >= 3) {
+        message = '<strong>Almost there!</strong> You have a good foundation—Angela’s book will help you fill in the gaps.';
+      } else {
+        message = '<strong>Don’t worry!</strong> Everyone starts somewhere. This guide will walk you through each step clearly.';
+      }
+      resultBox.innerHTML = message;
+      resultBox.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
